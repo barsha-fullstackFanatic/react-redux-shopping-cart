@@ -6,7 +6,7 @@ export const products = [
     description:
       "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
     category: "men's clothing",
-    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    image: "https://images.unsplash.com/photo-1521335629791-ce4aec67dd53",
     rating: {
       rate: 3.9,
       count: 120,
