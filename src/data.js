@@ -68,7 +68,7 @@ export const products = [
     price: 10.99,
     description: "Stylish stainless steel earrings.",
     category: "jewelery",
-    image: "https://images.pexels.com/photos/942879/pexels-photo-942879.jpeg?auto=compress&cs=tinysrgb&w=500",
+    image: "https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=500",
     rating: { rate: 1.9, count: 100 }
   },
   {
