@@ -1,55 +1,43 @@
-import {useEffect} from "react"
-import Product from "../components/Product"
-import {useState} from "react"
-import Spinner from "../components/Spinner"
+import Product from "../components/Product";
+import { useState, useEffect } from "react";
+import Spinner from "../components/Spinner";
+import { products } from "../data"; // ✅ IMPORT YOUR DATA
+
 const Home = () => {
-  
-  const API_URL = "https://fakestoreapi.com/products";
 
-  
-  const[loading,setloading]=useState(false);
-  const [posts,setposts]=useState([]);
-  
-async function fetchData(){
-   
-    setloading(true);
-  try{
-  const output =await fetch(API_URL);
-  const content= await output.json();
-  setposts(content);
-  console.log(content);
-  
-}catch(error){
-    console.log("no data received")
-    setposts([]);
-  }
-  setloading(false);
+  const [loading, setLoading] = useState(false);
+  const [posts, setPosts] = useState([]);
 
+  useEffect(() => {
+    setLoading(true);
 
-}
-// console.log(posts);
+    // ✅ use local data instead of API
+    setPosts(products);
 
-useEffect(()=>{
-  fetchData();
-},[])
+    setLoading(false);
+  }, []);
 
+  return (
+    <div>
+      <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl p-2 mx-auto space-y-10 space-x-5 min-h-[80vh]">
+        
+        {
+          loading ? (
+            <Spinner />
+          ) : (
+            posts.length > 0 ? (
+              posts.map((post) => (
+                <Product key={post.id} post={post} />
+              ))
+            ) : (
+              <div>No Products available</div>
+            )
+          )
+        }
 
-
-  return <div>
- {
-  <div className="grid  xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl p-2 mx-auto space-y-10 space-x-5 min-h-[80vh] ">{
-loading ? (<Spinner></Spinner>):( posts.length>0 ?
-  posts.map((post) => {
-    return <Product key={post.id} post={post}></Product>
-  }): (<div>No Products available</div>)
-)
-}</div>
- }
-
-
-
-
-  </div>
+      </div>
+    </div>
+  );
 };
 
 export default Home;
